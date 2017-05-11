@@ -37,18 +37,18 @@ class TestExtensionMethods {
                 Pair(4, 'A'), Pair(4, 'B'), Pair(4, 'C'),
                 Pair(5, 'A'), Pair(5, 'B'), Pair(5, 'C'),
                 Pair(null, 'A'), Pair(null, 'B'), Pair(null, 'C')
-        ), left.xproduct(right).toList())
+        ), left.product(right).toList())
 
         assertEquals(listOf(
                 Pair(1, 'A'), Pair(1, 'B'), Pair(1, 'C'),
                 Pair(2, 'A')
-        ), left.xproduct(right).take(4).toList())
+        ), left.product(right).take(4).toList())
 
         assertEquals(listOf(
                 Pair('A', 'A'), Pair('A', 'B'), Pair('A', 'C'),
                 Pair('B', 'A'), Pair('B', 'B'), Pair('B', 'C'),
                 Pair('C', 'A'), Pair('C', 'B'), Pair('C', 'C')
-        ), right.xproduct().toList())
+        ), right.product().toList())
     }
 
     @test fun testInfinite() {
@@ -76,7 +76,7 @@ class TestExtensionMethods {
 
         assertEquals(listOf(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4), cycle(listOf(1, 2, 3, 4)).take(12).toList())
 
-        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), xrepeat(1).take(8).toList())
-        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), xrepeat(1, 8).toList())
+        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), repeat(1).take(8).toList())
+        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), repeat(1, 8).toList())
     }
 }

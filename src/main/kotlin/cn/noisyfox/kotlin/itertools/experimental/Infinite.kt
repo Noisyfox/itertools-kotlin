@@ -88,7 +88,7 @@ fun <T> cycle(i: Iterable<T>): Sequence<T> = buildSequence {
 /**
  * Make an iterator that returns [element] over and over again. Runs indefinitely.
  */
-fun <T> xrepeat(element: T): Sequence<T> = buildSequence {
+fun <T> repeat(element: T): Sequence<T> = buildSequence {
     while (true) {
         yield(element)
     }
@@ -97,7 +97,7 @@ fun <T> xrepeat(element: T): Sequence<T> = buildSequence {
 /**
  * Make an iterator that returns [element] over and over again. Runs [count] times.
  */
-fun <T> xrepeat(element: T, count: Int): Sequence<T> = buildSequence {
+fun <T> repeat(element: T, count: Int): Sequence<T> = buildSequence {
     for (i in 1..count) {
         yield(element)
     }

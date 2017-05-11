@@ -32,7 +32,7 @@ import kotlin.coroutines.experimental.buildIterator
  *
  * This one use yield.
  */
-fun <T1, T2> Iterable<T1>.xproduct(other: Iterable<T2>): Iterable<Pair<T1, T2>> {
+fun <T1, T2> Iterable<T1>.product(other: Iterable<T2>): Iterable<Pair<T1, T2>> {
     val self = this
     return object : Iterable<Pair<T1, T2>> {
         override fun iterator(): Iterator<Pair<T1, T2>> = buildIterator {
@@ -52,4 +52,4 @@ fun <T1, T2> Iterable<T1>.xproduct(other: Iterable<T2>): Iterable<Pair<T1, T2>> 
  * This pattern creates a lexicographic ordering so that if the input’s iterables are sorted,
  * the product tuples are emitted in sorted order.
  */
-fun <T> Iterable<T>.xproduct(): Iterable<Pair<T, T>> = this.xproduct(this)
+fun <T> Iterable<T>.product(): Iterable<Pair<T, T>> = this.product(this)
