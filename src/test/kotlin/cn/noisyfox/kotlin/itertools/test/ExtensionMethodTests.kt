@@ -88,4 +88,8 @@ class TestExtensionMethods {
                 Pair(2, 'A')
         ), left.product(right).take(4).toList())
     }
+
+    @test fun testInfinite() {
+        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), repeat(1, 8).toList())
+    }
 }
