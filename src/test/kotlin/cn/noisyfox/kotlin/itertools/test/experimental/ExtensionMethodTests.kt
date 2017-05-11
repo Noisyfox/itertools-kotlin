@@ -49,6 +49,23 @@ class TestExtensionMethods {
                 Pair('B', 'A'), Pair('B', 'B'), Pair('B', 'C'),
                 Pair('C', 'A'), Pair('C', 'B'), Pair('C', 'C')
         ), right.product().toList())
+
+        assertEquals(listOf(
+                Pair('A', 'B'), Pair('A', 'C'),
+                Pair('B', 'A'), Pair('B', 'C'),
+                Pair('C', 'A'), Pair('C', 'B')
+        ), right.permutations().toList())
+
+        assertEquals(listOf(
+                Pair('A', 'B'), Pair('A', 'C'),
+                Pair('B', 'C')
+        ), right.combinations().toList())
+
+        assertEquals(listOf(
+                Pair('A', 'A'), Pair('A', 'B'), Pair('A', 'C'),
+                Pair('B', 'B'), Pair('B', 'C'),
+                Pair('C', 'C')
+        ), right.combinationsWithReplacement().toList())
     }
 
     @test fun testInfinite() {

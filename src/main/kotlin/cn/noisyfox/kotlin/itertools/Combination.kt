@@ -46,3 +46,60 @@ fun <T1, T2> Iterable<T1>.product(other: Iterable<T2>): Iterable<Pair<T1, T2>> {
  * the product tuples are emitted in sorted order.
  */
 fun <T> Iterable<T>.product(): Iterable<Pair<T, T>> = this.product(this)
+
+/**
+ * Return successive 2 length permutations of elements in the iterable.
+ */
+fun <T> Iterable<T>.permutations(): Iterable<Pair<T, T>> {
+    val result = mutableListOf<Pair<T, T>>()
+
+    for ((i1, v1) in this.withIndex()) {
+        this
+                .filterIndexed { i2, _ -> i1 != i2 }
+                .mapTo(result) { Pair(v1, it) }
+    }
+
+    return result
+}
+
+/**
+ * Return 2 length subsequences of elements from the input iterable.
+ *
+ * Combinations are emitted in lexicographic sort order. So, if the input iterable is sorted,
+ * the combination tuples will be produced in sorted order.
+ *
+ * Elements are treated as unique based on their position, not on their value.
+ * So if the input elements are unique, there will be no repeat values in each combination.
+ */
+fun <T> Iterable<T>.combinations(): Iterable<Pair<T, T>> {
+    val result = mutableListOf<Pair<T, T>>()
+
+    for ((i1, v1) in this.withIndex()) {
+        this.drop(i1 + 1).mapTo(result) {
+            Pair(v1, it)
+        }
+    }
+
+    return result
+}
+
+/**
+ * Return 2 length subsequences of elements from the input iterable allowing individual elements to be repeated more than once.
+ *
+ * Combinations are emitted in lexicographic sort order. So, if the input iterable is sorted,
+ * the combination tuples will be produced in sorted order.
+ *
+ * Elements are treated as unique based on their position, not on their value.
+ * So if the input elements are unique, there will be no repeat values in each combination.
+ */
+fun <T> Iterable<T>.combinationsWithReplacement(): Iterable<Pair<T, T>> {
+    val result = mutableListOf<Pair<T, T>>()
+
+    for ((i1, v1) in this.withIndex()) {
+        this.drop(i1).mapTo(result) {
+            Pair(v1, it)
+        }
+    }
+
+    return result
+}
