@@ -74,13 +74,13 @@ class TestExtensionMethods {
         val left = listOf(1, 2, 3, 4, 5, null)
         val right = listOf('A', 'B', 'C')
 
-        assertEquals(left.product(right), listOf(
+        assertEquals(listOf(
                 Pair(1, 'A'), Pair(1, 'B'), Pair(1, 'C'),
                 Pair(2, 'A'), Pair(2, 'B'), Pair(2, 'C'),
                 Pair(3, 'A'), Pair(3, 'B'), Pair(3, 'C'),
                 Pair(4, 'A'), Pair(4, 'B'), Pair(4, 'C'),
                 Pair(5, 'A'), Pair(5, 'B'), Pair(5, 'C'),
                 Pair(null, 'A'), Pair(null, 'B'), Pair(null, 'C')
-        ))
+        ), left.product(right).toList())
     }
 }
