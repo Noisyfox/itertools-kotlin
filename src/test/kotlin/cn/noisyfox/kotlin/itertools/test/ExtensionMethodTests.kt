@@ -82,5 +82,10 @@ class TestExtensionMethods {
                 Pair(5, 'A'), Pair(5, 'B'), Pair(5, 'C'),
                 Pair(null, 'A'), Pair(null, 'B'), Pair(null, 'C')
         ), left.product(right).toList())
+
+        assertEquals(listOf(
+                Pair(1, 'A'), Pair(1, 'B'), Pair(1, 'C'),
+                Pair(2, 'A')
+        ), left.product(right).take(4).toList())
     }
 }
