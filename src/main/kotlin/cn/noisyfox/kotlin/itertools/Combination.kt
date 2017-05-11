@@ -37,3 +37,12 @@ fun <T1, T2> Iterable<T1>.product(other: Iterable<T2>): Iterable<Pair<T1, T2>> {
 
     return result
 }
+
+/**
+ * Cartesian product of input iterables.
+ *
+ * The nested loops cycle like an odometer with the rightmost element advancing on every iteration.
+ * This pattern creates a lexicographic ordering so that if the input’s iterables are sorted,
+ * the product tuples are emitted in sorted order.
+ */
+fun <T> Iterable<T>.product(): Iterable<Pair<T, T>> = this.product(this)

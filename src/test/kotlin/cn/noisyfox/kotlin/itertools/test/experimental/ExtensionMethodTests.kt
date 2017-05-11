@@ -43,6 +43,12 @@ class TestExtensionMethods {
                 Pair(1, 'A'), Pair(1, 'B'), Pair(1, 'C'),
                 Pair(2, 'A')
         ), left.xproduct(right).take(4).toList())
+
+        assertEquals(listOf(
+                Pair('A', 'A'), Pair('A', 'B'), Pair('A', 'C'),
+                Pair('B', 'A'), Pair('B', 'B'), Pair('B', 'C'),
+                Pair('C', 'A'), Pair('C', 'B'), Pair('C', 'C')
+        ), right.xproduct().toList())
     }
 
     @test fun testInfinite() {
