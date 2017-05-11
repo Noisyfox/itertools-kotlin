@@ -18,12 +18,10 @@
 package cn.noisyfox.kotlin.itertools.test
 
 
-import cn.noisyfox.kotlin.itertools.firstNotNull
-import cn.noisyfox.kotlin.itertools.firstNotNullOrElse
-import cn.noisyfox.kotlin.itertools.lastNotNull
-import cn.noisyfox.kotlin.itertools.lastNotNullOrElse
+import cn.noisyfox.kotlin.itertools.*
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import org.junit.Test as test
 
@@ -70,5 +68,19 @@ class TestExtensionMethods {
 
         assertThat(l2.firstNotNullOrElse { 4 }, equalTo(4))
         assertThat(l2.lastNotNullOrElse { 5 }, equalTo(5))
+    }
+
+    @test fun testCombination() {
+        val left = listOf(1, 2, 3, 4, 5, null)
+        val right = listOf('A', 'B', 'C')
+
+        assertEquals(left.product(right), listOf(
+                Pair(1, 'A'), Pair(1, 'B'), Pair(1, 'C'),
+                Pair(2, 'A'), Pair(2, 'B'), Pair(2, 'C'),
+                Pair(3, 'A'), Pair(3, 'B'), Pair(3, 'C'),
+                Pair(4, 'A'), Pair(4, 'B'), Pair(4, 'C'),
+                Pair(5, 'A'), Pair(5, 'B'), Pair(5, 'C'),
+                Pair(null, 'A'), Pair(null, 'B'), Pair(null, 'C')
+        ))
     }
 }
