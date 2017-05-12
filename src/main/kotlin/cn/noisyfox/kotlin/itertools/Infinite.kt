@@ -25,10 +25,16 @@ package cn.noisyfox.kotlin.itertools
  * Make an iterator that returns [element] over and over again. Runs [count] times.
  */
 fun <T> repeat(element: T, count: Int): Sequence<T> {
-    val result = mutableListOf<T>()
-    for (i in 1..count) {
-        result.add(element)
-    }
+    return Sequence {
+        object : Iterator<T> {
+            val it = (1..count).iterator()
 
-    return result.asSequence()
+            override fun hasNext(): Boolean = it.hasNext()
+
+            override fun next(): T {
+                it.next()
+                return element
+            }
+        }
+    }
 }
