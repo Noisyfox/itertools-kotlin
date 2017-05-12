@@ -69,10 +69,10 @@ fun count(start: Double, step: Double = 1.0): Sequence<Double> = count(start, st
  * Make an iterator returning elements from the iterable and saving a copy of each.
  * When the iterable is exhausted, return elements from the saved copy. Repeats indefinitely.
  */
-fun <T> cycle(i: Iterable<T>): Sequence<T> = buildSequence {
+fun <T> Iterable<T>.cycle(): Sequence<T> = buildSequence {
     val saved = mutableListOf<T>()
 
-    for (item in i) {
+    for (item in this@cycle) {
         yield(item)
         saved.add(item)
     }

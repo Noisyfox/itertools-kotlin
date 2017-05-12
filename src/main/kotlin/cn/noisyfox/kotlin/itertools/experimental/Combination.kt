@@ -33,10 +33,9 @@ import kotlin.coroutines.experimental.buildIterator
  * This one use yield.
  */
 fun <T1, T2> Iterable<T1>.product(other: Iterable<T2>): Iterable<Pair<T1, T2>> {
-    val self = this
     return object : Iterable<Pair<T1, T2>> {
         override fun iterator(): Iterator<Pair<T1, T2>> = buildIterator {
-            for (left in self) {
+            for (left in this@product) {
                 for (right in other) {
                     yield(Pair(left, right))
                 }
@@ -62,11 +61,10 @@ fun <T> Iterable<T>.product(): Iterable<Pair<T, T>> = this.product(this)
  * This one use yield.
  */
 fun <T> Iterable<T>.permutations(): Iterable<Pair<T, T>> {
-    val self = this
     return object : Iterable<Pair<T, T>> {
         override fun iterator(): Iterator<Pair<T, T>> = buildIterator {
-            for ((i1, v1) in self.withIndex()) {
-                for ((i2, v2) in self.withIndex()) {
+            for ((i1, v1) in this@permutations.withIndex()) {
+                for ((i2, v2) in this@permutations.withIndex()) {
                     if (i1 != i2) {
                         yield(Pair(v1, v2))
                     }
@@ -88,11 +86,10 @@ fun <T> Iterable<T>.permutations(): Iterable<Pair<T, T>> {
  * This one use yield.
  */
 fun <T> Iterable<T>.combinations(): Iterable<Pair<T, T>> {
-    val self = this
     return object : Iterable<Pair<T, T>> {
         override fun iterator(): Iterator<Pair<T, T>> = buildIterator {
-            for ((i1, v1) in self.withIndex()) {
-                for (v2 in self.drop(i1 + 1)) {
+            for ((i1, v1) in this@combinations.withIndex()) {
+                for (v2 in this@combinations.drop(i1 + 1)) {
                     yield(Pair(v1, v2))
                 }
             }
@@ -112,11 +109,10 @@ fun <T> Iterable<T>.combinations(): Iterable<Pair<T, T>> {
  * This one use yield.
  */
 fun <T> Iterable<T>.combinationsWithReplacement(): Iterable<Pair<T, T>> {
-    val self = this
     return object : Iterable<Pair<T, T>> {
         override fun iterator(): Iterator<Pair<T, T>> = buildIterator {
-            for ((i1, v1) in self.withIndex()) {
-                for (v2 in self.drop(i1)) {
+            for ((i1, v1) in this@combinationsWithReplacement.withIndex()) {
+                for (v2 in this@combinationsWithReplacement.drop(i1)) {
                     yield(Pair(v1, v2))
                 }
             }
