@@ -75,3 +75,5 @@ bin/
 
 #Android Studio
 local.properties
+
+bintray.properties
