@@ -93,7 +93,8 @@ class TestExtensionMethods {
 
         assertEquals(listOf(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4), listOf(1, 2, 3, 4).cycle().take(12).toList())
 
-        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), repeat(1).take(8).toList())
-        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), repeat(1, 8).toList())
+        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), 1.repeat().take(8).toList())
+        assertEquals(listOf(1, 1, 1, 1, 1, 1, 1, 1), 1.repeat(8).toList())
+        assertEquals(listOf(null, null, null, null), null.repeat(4).toList())
     }
 }

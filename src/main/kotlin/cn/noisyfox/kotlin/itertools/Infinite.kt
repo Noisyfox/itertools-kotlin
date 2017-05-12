@@ -120,22 +120,22 @@ fun <T> Iterable<T>.cycle(): Sequence<T> {
 
 
 /**
- * Make an iterator that returns [element] over and over again. Runs indefinitely.
+ * Make an iterator that returns element over and over again. Runs indefinitely.
  */
-fun <T> repeat(element: T): Sequence<T> {
+fun <T> T.repeat(): Sequence<T> {
     return Sequence {
         object : Iterator<T> {
             override fun hasNext(): Boolean = true
 
-            override fun next(): T = element
+            override fun next(): T = this@repeat
         }
     }
 }
 
 /**
- * Make an iterator that returns [element] over and over again. Runs [count] times.
+ * Make an iterator that returns element over and over again. Runs [count] times.
  */
-fun <T> repeat(element: T, count: Int): Sequence<T> {
+fun <T> T.repeat(count: Int): Sequence<T> {
     return Sequence {
         object : Iterator<T> {
             val it = (1..count).iterator()
@@ -144,7 +144,7 @@ fun <T> repeat(element: T, count: Int): Sequence<T> {
 
             override fun next(): T {
                 it.next()
-                return element
+                return this@repeat
             }
         }
     }
